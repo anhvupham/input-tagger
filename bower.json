@@ -1,6 +1,6 @@
 {
   "name": "input-tagger",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "authors": [
     "Vincent Pham <vincent.pham.us@gmail.com>"
   ],
@@ -9,11 +9,12 @@
     "web-component",
     "web-components",
     "polymer",
-    "seed"
+    "polymer taggit",
+    "polymer input tagger"
   ],
   "main": "input-tagger.html",
-  "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "license": "MIT",
+  "homepage": "http://anhvupham.github.io/input-tagger",
   "ignore": [
     "/.*",
     "/test/",
