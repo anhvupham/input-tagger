@@ -1,0 +1,94 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../paper-input/paper-input-container.html">
+<link rel="stylesheet" href="animate.css">
+<dom-module id="input-tagger">
+    <style>
+    :host {
+        display: block;
+        --iron-icon-width: 18px;
+        --iron-icon-height: 18px;
+    }
+    
+    iron-icon:hover {
+        cursor: pointer;
+    }
+    </style>
+    <template>
+        <paper-input-container>
+            <label>{{label}}</label>
+            <input id="inputField" is="iron-input" on-keyup="addTag" />
+        </paper-input-container>
+        <template is="dom-repeat" items="{{tags}}" as="tag">
+            <span id={{tag}} class$="{{returnClass()}}">{{tag}}<iron-icon icon="close" on-click="removeTag"></iron-icon> </span>
+        </template>
+    </template>
+</dom-module>
+<script>
+(function() {
+    Polymer({
+        is: 'input-tagger',
+
+        properties: {
+            tags: {
+                type: Array,
+                notify: true,
+                value: function() {
+                    return [];
+                }
+            },
+            label: {
+                type: String
+            },
+            cssClass: {
+                type: String
+            },
+            animateClass: {
+                type: String
+            }
+        },
+
+        returnClass: function() {
+            return this.cssClass + ' animated ' + this.animateClass;
+            // return 'tagged animated fadeIn';
+        },
+
+        addTag: function(e) {
+            if (e.keyCode == 13 && e.target.value) {
+                var value = e.target.value.trim();
+                this.tags = this.tags || [];
+                var duplicated = this.tags.filter(function(x) {
+                    return x == value;
+                });
+                if (!duplicated[0]) {
+                    this.push('tags', value);
+                    this.$.inputField.value = '';
+                } else {
+                    this.toggleClass('infinite', true, this.$$('#' + value));
+                    setTimeout(function() {
+                        this.toggleClass('infinite', false, this.$$('#' + value));
+                    }.bind(this), 1000);
+                }
+            }
+        },
+
+        removeTag: function(e) {
+            var tag = e.model.tag;
+            this.tags = this.tags.filter(function(x) {
+                return x != tag;
+            });
+        }
+    });
+})();
+</script>

@@ -1,0 +1,78 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../input-tagger.html">
+</head>
+
+<body>
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <input-tagger label="Input here ..." css-class="tagged" animate-class="fadeIn"></input-tagger>
+    <script>
+    var myEl = document.querySelector('input-tagger');
+
+    suite('<input-tagger>', function() {
+
+        test('test send attribute value', function() {
+            assert.equal(myEl.label, 'Input here ...');
+            assert.equal(myEl.cssClass, 'tagged');
+            assert.equal(myEl.animateClass, 'fadeIn');
+        });
+
+        test('test add tag', function() {
+            myEl.addTag({
+                keyCode: 13,
+                target: {
+                    value: 'tag1'
+                }
+            });
+            myEl.addTag({
+                keyCode: 13,
+                target: {
+                    value: 'tag2'
+                }
+            });
+
+            assert.equal(myEl.tags.length, 2);
+        });
+
+        test('test add duplicated tag', function() {
+            myEl.addTag({
+                keyCode: 13,
+                target: {
+                    value: 'tag2'
+                }
+            });
+
+            assert.equal(myEl.tags.length, 2);
+        });
+
+        test('test remove tag', function() {
+            myEl.removeTag({
+                model: {
+                    tag: 'tag1'
+                }
+            });
+
+            assert.equal(myEl.tags.length, 1);
+        });
+
+    });
+    </script>
+</body>
+
+</html>
