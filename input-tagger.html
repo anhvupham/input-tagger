@@ -41,27 +41,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'input-tagger',
 
         properties: {
-            tags: {
+            tags: { 
                 type: Array,
                 notify: true,
                 value: function() {
                     return [];
                 }
             },
-            label: {
+            label: { //Input text label
                 type: String
             },
-            cssClass: {
+            cssClass: {// Css class of tagged box
                 type: String
             },
-            animateClass: {
+            animateClass: {// Animate css class, class name are in https://daneden.github.io/animate.css/
                 type: String
             }
         },
 
         returnClass: function() {
-            return this.cssClass + ' animated ' + this.animateClass;
-            // return 'tagged animated fadeIn';
+            return this.cssClass + ' animated ' + this.animateClass;            
         },
 
         addTag: function(e) {
