@@ -13,6 +13,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-input/iron-input.html">
 <link rel="import" href="../paper-input/paper-input-container.html">
 <link rel="stylesheet" href="animate.css">
+<!--
+Another taggit written on Polymer.
+
+Example:
+
+    <input-tagger></input-tagger>
+
+@demo
+-->
 <dom-module id="input-tagger">
     <style>
     :host {
@@ -41,6 +50,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'input-tagger',
 
         properties: {
+            /**
+           * `tags` hold the list of tags that created
+           */
             tags: { 
                 type: Array,
                 notify: true,
@@ -48,14 +60,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     return [];
                 }
             },
+            /**
+           * `label` is the floating label of input textbox
+           */
             label: { //Input text label
-                type: String
+                type: String,
+                value: 'Enter here ...'
             },
+            /**
+           * `cssClass` is the css class of the tags
+           */
             cssClass: {// Css class of tagged box
-                type: String
+                type: String,
+                value: ''
             },
+            /**
+           * Out of the box, we provide the animation of animatecss (https://daneden.github.io/animate.css/). `animateClass` is the name of animate class.
+           */
             animateClass: {// Animate css class, class name are in https://daneden.github.io/animate.css/
-                type: String
+                type: String,
+                value: 'fadeIn'
             }
         },
 
@@ -63,6 +87,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return this.cssClass + ' animated ' + this.animateClass;            
         },
 
+        /**
+           * Attemp to add the tag when hit Enter
+           */
         addTag: function(e) {
             if (e.keyCode == 13 && e.target.value) {
                 var value = e.target.value.trim();
@@ -82,6 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
         },
 
+        /**
+           * Attemp to remove the tag when click on X
+           */
         removeTag: function(e) {
             var tag = e.model.tag;
             this.tags = this.tags.filter(function(x) {
