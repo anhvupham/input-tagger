@@ -3,7 +3,7 @@
 A tagit element written in polymer.
 
 
-## Install
+## Developer
 
 Element dependencies are managed via [Bower](http://bower.io/). You can
 install that via:
@@ -13,6 +13,11 @@ install that via:
 Then, go ahead and download the element's dependencies:
 
     bower install
+
+
+## How to use
+
+	bower install input-tagger
 
 
 ## Check out the document and demo here
