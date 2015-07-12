@@ -1,0 +1,41 @@
+{
+  "name": "input-tagger",
+  "authors": [
+    "Vincent Pham <vincent.pham.us@gmail.com>"
+  ],
+  "description": "A tagit element written in polymer",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "polymer taggit",
+    "polymer input tagger"
+  ],
+  "main": "input-tagger.html",
+  "license": "MIT",
+  "homepage": "http://anhvupham.github.io/input-tagger",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-icon": "polymerelements/iron-icon#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  },
+  "_release": "9488f1ccad",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9488f1ccad6626fb7e13b40fb6179db10ae7a5da"
+  },
+  "_source": "git://github.com/anhvupham/input-tagger.git",
+  "_target": "master",
+  "_originalSource": "anhvupham/input-tagger",
+  "_direct": true
+}
